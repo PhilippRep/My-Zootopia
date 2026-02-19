@@ -23,21 +23,26 @@ def get_information_from_animals(infos):
         animal_type = is_characteristics.get("type")
         if animal_type is None:
             output += '<li class="cards__item">\n'
-            output += f'<div class="card__title">{animal['name']}</div><br/>\n'
-            output += '<p class ="card__text">'
-            output += f"<strong>Diet: </strong>{animal['characteristics']['diet']}<br/>\n"
-            output += f"<strong>Location: </strong>{animal['locations'][0]}<br/>\n"
-            output += '</p><br/>'
+            output += f'<div class="card__title">{animal["name"]}</div><br/>\n'
+            output += '<div class ="card__text">'
+            output += "<ul>"
+            output += f"<li><strong>Diet: </strong>{animal['characteristics']['diet']}</li>\n"
+            output += f"<li><strong>Location: </strong>{animal['locations'][0]}</li>\n"
+            output += '</ul>'
+            output += "</div>"
             output += '</li>\n'
         else:
             output += '<li class="cards__item">\n'
-            output += f'<div class="card__title">{animal['name']}</div><br/>\n'
-            output += '<p class ="card__text">'
-            output += f"<strong>Diet: </strong>{animal['characteristics']['diet']}<br/>\n"
-            output += f"<strong>Location: </strong>{animal['locations'][0]}<br/>\n"
-            output += f"<strong>Type: </strong>{animal['characteristics']['type']}<br/>\n"
-            output += '</p><br/>'
-            output += '</li>\n'
+            output += f'<div class="card__title">{animal["name"]}</div></br>\n'
+            output += '<div class ="card__text">'
+            output += "<ul>"
+            output += f"<li><strong>Diet: </strong>{animal['characteristics']['diet']}\n"
+            output += f"<li><strong>Location: </strong>{animal['locations'][0]}</li>\n"
+            output += f"<li><strong>Type: </strong>{animal['characteristics']['type']}</li>\n"
+            output += f"<li><strong>Lifespan: </strong>{animal['characteristics']['lifespan']}</li>\n"
+            output += '</ul>'
+            output += '</div>'
+            output += "</li>\n"
 
     new_content = read_html().replace("__REPLACE_ANIMALS_INFO__", output)
     with open("animals.html", "w", encoding="utf-8") as file:
@@ -49,6 +54,7 @@ def main():
     animals_data = load_data('animals_data.json')
     get_information_from_animals(animals_data)
     read_html()
+
 
 if __name__ == "__main__":
     main()
