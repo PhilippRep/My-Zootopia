@@ -14,7 +14,7 @@ def get_information_from_animals(infos):
     for animal in infos:
         is_characteristics = animal.get('characteristics')
         animal_type = is_characteristics.get("type")
-        if animal_type == None:
+        if animal_type is None:
             print(f"Name: {animal['name']}\nDiet: {animal['characteristics']['diet']}\nLocation: "
                   f"{animal['locations'][0]}\n")
         else:
