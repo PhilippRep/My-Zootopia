@@ -23,14 +23,18 @@ def get_information_from_animals(infos):
         is_characteristics = animal.get('characteristics')
         animal_type = is_characteristics.get("type")
         if animal_type is None:
-            output += f"\nName: {animal['name']}\n"\
-                      f"Diet: {animal['characteristics']['diet']}\n"\
-                      f"Location: {animal['locations'][0]}\n\n"
+            output += '<li class="cards__item">\n'
+            output += f"        Name: {animal['name']}<br/>\n" \
+                      f"        Diet: {animal['characteristics']['diet']}<br/>\n" \
+                      f"        Location: {animal['locations'][0]}<br/>\n"
+            output += "</li>\n"
         else:
-            output += f"\nName: {animal['name']}\n"\
-                      f"Diet: {animal['characteristics']['diet']}\n"\
-                      f"Location: {animal['locations'][0]}\n"\
-                      f"Type: {animal['characteristics']['type']}\n\n"
+            output += '<li class="cards__item">\n'
+            output += f"        Name: {animal['name']}<br/>\n" \
+                      f"        Diet: {animal['characteristics']['diet']}<br/>\n" \
+                      f"        Location: {animal['locations'][0]}<br/>\n" \
+                      f"        Type: {animal['characteristics']['type']}<br/>\n"
+            output += "</li>\n"
 
     new_content = read_html().replace("__REPLACE_ANIMALS_INFO__", output)
     with open("animals.html", "w", encoding="utf-8") as file:
