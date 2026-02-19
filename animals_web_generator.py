@@ -1,6 +1,5 @@
-"""..."""
+"""create a website with spezific input from a json-file"""
 import json
-from bs4 import BeautifulSoup
 
 def load_data(file_path):
     """ Loads a JSON file """
@@ -24,17 +23,21 @@ def get_information_from_animals(infos):
         animal_type = is_characteristics.get("type")
         if animal_type is None:
             output += '<li class="cards__item">\n'
-            output += f"        Name: {animal['name']}<br/>\n" \
-                      f"        Diet: {animal['characteristics']['diet']}<br/>\n" \
-                      f"        Location: {animal['locations'][0]}<br/>\n"
-            output += "</li>\n"
+            output += f'<div class="card__title">{animal['name']}</div><br/>\n'
+            output += '<p class ="card__text">'
+            output += f"<strong>Diet: </strong>{animal['characteristics']['diet']}<br/>\n"
+            output += f"<strong>Location: </strong>{animal['locations'][0]}<br/>\n"
+            output += '</p><br/>'
+            output += '</li>\n'
         else:
             output += '<li class="cards__item">\n'
-            output += f"        Name: {animal['name']}<br/>\n" \
-                      f"        Diet: {animal['characteristics']['diet']}<br/>\n" \
-                      f"        Location: {animal['locations'][0]}<br/>\n" \
-                      f"        Type: {animal['characteristics']['type']}<br/>\n"
-            output += "</li>\n"
+            output += f'<div class="card__title">{animal['name']}</div><br/>\n'
+            output += '<p class ="card__text">'
+            output += f"<strong>Diet: </strong>{animal['characteristics']['diet']}<br/>\n"
+            output += f"<strong>Location: </strong>{animal['locations'][0]}<br/>\n"
+            output += f"<strong>Type: </strong>{animal['characteristics']['type']}<br/>\n"
+            output += '</p><br/>'
+            output += '</li>\n'
 
     new_content = read_html().replace("__REPLACE_ANIMALS_INFO__", output)
     with open("animals.html", "w", encoding="utf-8") as file:
@@ -42,12 +45,10 @@ def get_information_from_animals(infos):
 
 
 def main():
-    """start of the Programm"""
+    """controlling of the Programm"""
     animals_data = load_data('animals_data.json')
     get_information_from_animals(animals_data)
     read_html()
-
-
 
 if __name__ == "__main__":
     main()
